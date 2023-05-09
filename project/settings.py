@@ -128,5 +128,6 @@ STATICFILES_DIRS = [
 # Define the directory where Django should collect static files to
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
