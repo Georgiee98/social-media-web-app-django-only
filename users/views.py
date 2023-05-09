@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 
@@ -14,9 +14,9 @@ def user_login(request):
             if user is not None:
                 # User is authenticated
                 login(request, user)
-                return HttpResponse("user authenticated and logged in")
+                return redirect('index')
             else:
-                return HttpResponse("Invalid credentials")
+                return redirect('login')
 
 
     form = LoginForm()

@@ -127,3 +127,6 @@ STATICFILES_DIRS = [
 
 # Define the directory where Django should collect static files to
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
