@@ -117,11 +117,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+# Define the base URL to use for static files
 STATIC_URL = '/static/'
 
+# Define the directories where Django should look for static files
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
-
-LOGIN_REDIRECT_URL = 'users:index'
-LOGIN_URL = 'login'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+# Define the directory where Django should collect static files to
+STATIC_ROOT = BASE_DIR / "staticfiles"
