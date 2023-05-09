@@ -35,6 +35,9 @@
               <a class="nav-link active" href="{% url 'index' %}">Home</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/users/password_change">Change Password</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
             </li>
 
@@ -43,11 +46,9 @@
               <a class="nav-link active" href="{% url 'login' %}">Login</a>
             </li>
             {% endif %}
-<!--
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
+
+
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item">
