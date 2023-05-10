@@ -1,5 +1,11 @@
-{% extends "users/base.html" %}
-
-{% block body %}
-  <h1>Homepage for users appaaa</h1>
+{% extends "users/base.html" %} {% block body %} {% for post in posts %}
+<div class="d-flex justify-content-between">
+  <h4>{{ post.title }}</h4>
+  <br>
+  <h4>{{ post.user }}</h4>
+  <br>
+  <img src="{{ post.image.url }}" alt="">
+</div>
+{% endfor %}
+<h1>Homepage for users appaaa</h1>
 {% endblock %}
