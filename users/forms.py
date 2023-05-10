@@ -8,6 +8,12 @@ class UserEditForm(form.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
+
+class UserEditForm(form.ModelForm):
+    class Meta:
+        model = User
+        fields = ['profile_pic']
+
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
