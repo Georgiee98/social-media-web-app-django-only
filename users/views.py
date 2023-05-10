@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from .forms import UserEditForm, ProfileEditForm
+
 
 def user_login(request):
     if request.method == "POST":
@@ -23,6 +25,7 @@ def user_login(request):
     form = LoginForm()
     return render(request, 'users/login.html', {'form': form})
 
+
 @login_required
 def index(request):
     return render(request, 'users/index.html')
@@ -40,3 +43,21 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, 'users/register.html', {'user_form': user_form})
+
+
+@login_required
+def edit(request):
+    """Render UserEditForm and ProfileEditForm"""
+    if request.method == "POST":
+        # Currently Logged User
+        user_form = UserEditForm(instance=request.user, \
+            data=request.post)
+        profile_form = ProfileEditForm(instance=request.user.profile, \
+            data=request.POST, files=request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+    else:
+        user_form = UserEditForm(instance=request.user)
+        profile_form = ProfileEditForm(instance=request.user.profile)
+    return render(request, 'users/edit.html', {'user_form': user_form, 'profile_form': profile_form})
