@@ -3,16 +3,17 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 
-class UserEditForm(form.ModelForm):
+class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name', 'email',]
 
 
-class UserEditForm(form.ModelForm):
+class ProfileEditForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['profile_pic']
+        model = Profile
+        fields = ('profile_pic',)
+
 
 class LoginForm(forms.Form):
     username = forms.CharField()
