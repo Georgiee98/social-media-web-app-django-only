@@ -12,10 +12,10 @@
   >
     <div class="user-container flex">
       <img
-      {% if logged_user in post.liked_by.all %}
+      {% if profile.profile_pic %}
       src="{{post.user.profile.profile_pic.url}}"
       {% else %}
-      src="#"
+      src="{% static 'assets/images/Logo.png' %}"
       {% endif %}
         alt="profile picture"
         class="w-10 h-10 object-contain rounded-full"
@@ -39,6 +39,7 @@
           alt="Like"
         />
         </span>
+        <span>liked by</span>
 
         <img
           class="w-3 h-5"
