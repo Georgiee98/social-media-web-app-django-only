@@ -1,10 +1,61 @@
-{% extends "users/base.html" %}
+{% extends "users/base.html" %} {% load static %} {% block body %}
 
-{% block body %}
-<h2>Edit Form</h2>
-<form method="POST" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit">
-</form>
+<div class="bg-grey-lighter min-h-screen flex flex-col">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div
+      class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2"
+    >
+      <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+        <h1 class="mb-8 text-3xl text-center">Create Post</h1>
+        <label for="Title" class="block text-grey-700 text-sm font-bold mb-2"
+          >Title</label
+        >
+        <div
+          type="text"
+          class="block border border-grey-light w-full p-3 rounded mb-4"
+          name="title"
+          placeholder="Title"
+        >
+          {{form.title}}
+        </div>
+
+        <label for="image" class="block text-grey-700 text-sm font-bold mb-2"
+          >Image</label
+        >
+        <div
+          type="text"
+          class="block border border-grey-light w-full p-3 rounded mb-4"
+          name="image"
+          placeholder="Image"
+        >
+          {{form.image}}
+        </div>
+
+        <label
+          for="New Password"
+          class="block text-grey-700 text-sm font-bold mb-2"
+          >Content</label
+        >
+        <!-- <div
+        type="text"
+        class="block border border-grey-light w-full p-3 rounded mb-4"
+        name="content"
+        placeholder="Content"
+        >{{form.content}}</div> -->
+        <div class="border-none block w-full p-3 rounded mb-4">
+          {{ form.content }}
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-700 text-white hover:bg-blue-dark my-1 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Post
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
 {% endblock %}
