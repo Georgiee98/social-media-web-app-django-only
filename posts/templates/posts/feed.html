@@ -12,7 +12,11 @@
   >
     <div class="user-container flex">
       <img
-        src="{{post.user.profile.profile_pic.url}}"
+      {% if logged_user in post.liked_by.all %}
+      src="{{post.user.profile.profile_pic.url}}"
+      {% else %}
+      src="#"
+      {% endif %}
         alt="profile picture"
         class="w-10 h-10 object-contain rounded-full"
       />
@@ -24,11 +28,18 @@
     <img class="justify-center" src="{{ post.image.url }}" alt="" />
     <div class="px-2 py-2">
       <div class="flex gap-3 align-items-start">
-        <img
+        <span id="{{ post.id }}" class="btn-like">
+          <img
           class="w-5 h-5"
+          {% if logged_user in post.liked_by.all  %}
+          src="{% static 'assets/images/liked_heart.png' %}"
+          {% else %}
           src="{% static 'assets/images/heart_icon.svg' %}"
+          {% endif %}
           alt="Like"
         />
+        </span>
+
         <img
           class="w-3 h-5"
           src="{% static 'assets/images/comment_icon.svg' %}"
@@ -53,4 +64,28 @@
   {% endfor %}
 </div>
 
-{% endblock %}
+<script type="text/javascript">
+window.CSRF_TOKEN = "{{ csrf_token }}"
+$(document).on('click', '.btn-like', function () {
+  let post_id = this.id
+  $.ajax({
+    method:"POST",
+    url:"{% url 'like' %}",
+    data: {post_id:post_id, csrfmiddlewaretoken:window.CSRF_TOKEN},
+    success: function(response) {
+      // update the like button and its associated count
+      let likeButton = document.getElementById(post_id)
+      let likeCount = likeButton.querySelector('.like-count')
+      let likeImage = likeButton.querySelector('img')
+      if (response.already_liked) {
+        likeImage.src = "{% static 'assets/images/liked_heart.png' %}"
+      } else {
+        likeImage.src = "{% static 'assets/images/heart_icon.svg' %}"
+      }
+      likeCount.textContent = response.like_count + ' likes'
+    }
+  })
+})
+
+</script>
+  {% endblock %}
