@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'posts',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+AVATAR_DEFAULT_URL = '/static/assets/images/Logo.png'

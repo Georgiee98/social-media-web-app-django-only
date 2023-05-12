@@ -1,4 +1,6 @@
-{% extends "users/base.html" %} {% load static %} {% block body %}
+{% extends "users/base.html" %}
+{% load mathfilters %}
+ {% load static %} {% block body %}
 <div class="flex mt-5 justify-center">
   <h1 class="text-3xl font-normal text-gray-500">My Posts</h1>
 </div>
@@ -39,19 +41,32 @@
           alt="Like"
         />
         </span>
-        <span>liked by</span>
+        <div>
+          {% if post.liked_by.count < 1 %}
+
+          {% elif post.liked_by.count == 1 %}
+          {{ post.liked_by.first }} Likes this
+          {% elif post.liked_by.count > 1 %}
+          {{ post.liked_by.first }} and Other {{ post.liked_by.count |sub:1 }} Likes this
+          {% elif post.liked_by.count > 2 %}
+          {{ post.liked_by.first }} and Others {{ post.liked_by.count |sub:1 }} Likes this
+
+          {% endif %}
+
+        </div>
 
         <img
           class="w-3 h-5"
           src="{% static 'assets/images/comment_icon.svg' %}"
           alt="Like"
-        />
+          />
         <div class="ml-auto">
           <img
             class="w-5 h-3 object-contain"
             src="{% static 'assets/images/share_icon.png' %}"
             alt="Like"
           />
+
         </div>
       </div>
       <div class="px-2 py-2">

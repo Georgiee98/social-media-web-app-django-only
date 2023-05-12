@@ -21,7 +21,7 @@ def generate_default_profile_pic():
     file.write(icon)
     # Create an InMemoryUploadedFile from the in-memory file
     file.seek(0)
-    return InMemoryUploadedFile(file, None, 'default.png', 'users/%d/%m/%Y/image/png', file.getbuffer().nbytes, None)
+    return InMemoryUploadedFile(file, None, 'default.png', '/static/assets/images', file.getbuffer().nbytes, None)
 
 class Profile(models.Model):
     user = models.OneToOneField(
