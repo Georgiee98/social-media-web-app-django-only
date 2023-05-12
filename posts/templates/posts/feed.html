@@ -77,16 +77,24 @@
       </div>
       <div class="px-5 py-5">
           {% for comment in post.comments.all %}
-          {{ logged_user }} {{ comment.body }}
+          {{ comment.body }}
           <br>
           {% endfor %}
       </div>
-      <form action="POST">
+      <form action="{% url 'feed' %}" method="post">
         {% csrf_token %}
         <div>
-
+          <label>Add comment⬇️</label>
+        </div>
+        <div>{{ comment_form.body }}</div>
+        <div>
+          <input type="hidden" name="post_id" id="post_id" value="{{ post.id }}">
+        </div>
+        <div>
+          <button type="submit">Add comment</button>
         </div>
       </form>
+
     </div>
   </div>
   {% endfor %}
